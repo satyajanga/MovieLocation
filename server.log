@@ -1,0 +1,116 @@
+2014-11-01 09:47:43,796 ERROR local variable 'movies_list' referenced before assignment
+Traceback (most recent call last):
+  File "csv_parser.py", line 44, in <module>
+    main()
+  File "csv_parser.py", line 39, in main
+    parse_csv(options.csv_filename)
+  File "csv_parser.py", line 19, in parse_csv
+    movies_list+=[row];
+UnboundLocalError: local variable 'movies_list' referenced before assignment
+2014-11-01 09:49:05,740 ERROR cannot concatenate 'str' and 'int' objects
+Traceback (most recent call last):
+  File "csv_parser.py", line 45, in <module>
+    main()
+  File "csv_parser.py", line 40, in main
+    parse_csv(options.csv_filename)
+  File "csv_parser.py", line 24, in parse_csv
+    logging.info(" CSV File" + filename + " parsed successfully with num of movie" + len(movies_list));
+TypeError: cannot concatenate 'str' and 'int' objects
+2014-11-01 09:49:35,207 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movie1152
+2014-11-01 09:50:02,438 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:30:34,106 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:30:34,106 ERROR global name 'create_dict_for_auto_completion' is not defined
+Traceback (most recent call last):
+  File "csv_parser.py", line 58, in <module>
+    main()
+  File "csv_parser.py", line 53, in main
+    create_dict_for_auto_completion()
+NameError: global name 'create_dict_for_auto_completion' is not defined
+2014-11-01 10:30:50,403 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:30:50,406 ERROR global name 'movies_idnex' is not defined
+Traceback (most recent call last):
+  File "csv_parser.py", line 58, in <module>
+    main()
+  File "csv_parser.py", line 53, in main
+    create_dict_for_auto_completion()
+  File "csv_parser.py", line 23, in create_dict_for_auto_completion
+    logging.info("N- gram index with size =" +str(len(movies_idnex)) );
+NameError: global name 'movies_idnex' is not defined
+2014-11-01 10:31:09,724 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:31:09,728 INFO N- gram index with size =3113
+2014-11-01 10:32:48,514 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:32:48,518 INFO N- gram index with size =3113
+2014-11-01 10:33:35,873 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:33:35,876 INFO N- gram index with size =3113
+2014-11-01 10:35:38,450 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:35:38,456 INFO N- gram index with size =3113
+2014-11-01 10:55:44,318 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:55:44,318 ERROR 'int' object is not iterable
+Traceback (most recent call last):
+  File "csv_parser.py", line 64, in <module>
+    main()
+  File "csv_parser.py", line 59, in main
+    create_dict_for_auto_completion()
+  File "csv_parser.py", line 23, in create_dict_for_auto_completion
+    movies_index[movies_list[i][0][:j]] += i
+TypeError: 'int' object is not iterable
+2014-11-01 10:58:00,509 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 10:58:00,522 INFO N- gram index with size =3113
+2014-11-01 12:59:54,277 ERROR input data file not specified
+2014-11-01 13:00:42,114 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:00:42,125 INFO N- gram index with size =3113
+2014-11-01 13:08:08,399 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:08:08,406 INFO N- gram index with size =3113
+2014-11-01 13:11:25,179 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:11:25,186 INFO N- gram index with size =3113
+2014-11-01 13:12:36,082 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:12:36,089 INFO N- gram index with size =3113
+2014-11-01 13:14:28,845 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:14:28,852 INFO N- gram index with size =3113
+2014-11-01 13:15:36,262 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:15:36,269 INFO N- gram index with size =3113
+2014-11-01 13:16:23,911 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:16:23,918 INFO N- gram index with size =3113
+2014-11-01 13:23:45,561 ERROR input data file not specified
+2014-11-01 13:23:48,744 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:23:48,751 INFO N- gram index with size =3113
+2014-11-01 13:24:19,917 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:24:19,924 INFO N- gram index with size =3113
+2014-11-01 13:24:59,946 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:24:59,953 INFO N- gram index with size =3113
+2014-11-01 13:51:03,443 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:51:03,451 INFO N- gram index with size =3113
+2014-11-01 13:51:46,091 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:51:46,098 INFO N- gram index with size =3113
+2014-11-01 13:52:36,431 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:52:36,438 INFO N- gram index with size =3113
+2014-11-01 13:54:18,875 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:54:18,882 INFO N- gram index with size =3113
+2014-11-01 13:56:23,702 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:56:23,709 INFO N- gram index with size =3113
+2014-11-01 13:58:23,450 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:58:23,458 INFO N- gram index with size =3113
+2014-11-01 13:59:41,329 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 13:59:41,336 INFO N- gram index with size =3113
+2014-11-01 14:01:12,356 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:01:12,363 INFO N- gram index with size =3113
+2014-11-01 14:03:29,459 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:03:29,467 INFO N- gram index with size =3113
+2014-11-01 14:03:59,196 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:03:59,203 INFO N- gram index with size =3113
+2014-11-01 14:04:18,025 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:04:18,032 INFO N- gram index with size =3113
+2014-11-01 14:06:40,950 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:06:40,950 INFO N- gram index with size =2
+2014-11-01 14:07:39,458 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:07:39,458 INFO N- gram index with size =3
+2014-11-01 14:08:02,711 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:08:02,725 INFO N- gram index with size =3376
+2014-11-01 14:08:14,994 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:08:15,002 INFO N- gram index with size =3376
+2014-11-01 14:18:50,802 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:18:50,809 INFO N- gram index with size =3376
+2014-11-01 14:20:00,366 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 14:20:00,374 INFO N- gram index with size =3376
+2014-11-01 20:06:43,982 INFO  CSV FileFilm_Locations_in_San_Francisco.csv parsed successfully with num of movies  :: 1152
+2014-11-01 20:06:44,002 INFO N- gram index with size =3376
