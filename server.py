@@ -9,7 +9,7 @@ from optparse import OptionParser
 from BaseHTTPServer import HTTPServer
 from BaseHTTPServer import BaseHTTPRequestHandler
 import json
-
+# <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzj8PHYdRbMgP1datcx7Z_suSS_s1DYqY"></script>
 
 html_str ="""<!DOCTYPE html> \n<html>\n <body>\n\n\n<form action="abc" method="GET">
     Movie Name: <input type=\"text\" name=\"movie\"><br>
@@ -25,28 +25,73 @@ html_str ="""<!DOCTYPE html> \n<html>\n <body>\n\n\n<form action="abc" method="G
 html_gmaps = """<!DOCTYPE html>
 <html>
   <head>
-      <style>
-            #map_canvas {
-                width: 1280px;
-                height: 960px;
+      <style type="text/css">
+      html {height : 100%}
+      body {height : 100%; margin : 0; padding: 0}
+      #map_canvas {
+                width : 100%;
+                height: 100%;
             }
       </style>
-      <script src="https://maps.googleapis.com/maps/api/js"></script>
-      <script>
-          function initialize() {
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+     <script>
+        var map;
+        var markers = [];
+        function addMarker(location) {
+              var marker = new google.maps.Marker({
+                      position: location,
+                      map: map
+                });
+              markers.push(marker);
+        }
+
+        function deleteMarkers() {
+              for (var i = 0; i < markers.length; i++) {
+                   markers[i].setMap(map);
+              }
+              markers = [];
+        }
+        
+        function initialize(){
               var mapCanvas = document.getElementById('map_canvas');
               var mapOptions = {
-                  center: new google.maps.LatLng(44.5403, -78.5463),
+                  center: new google.maps.LatLng(37.7833, -122.4167),
                   zoom: 8,
                   mapTypeId: google.maps.MapTypeId.ROADMAP
               }
-              var map = new google.maps.Map(mapCanvas, mapOptions)
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
+     map = new google.maps.Map(mapCanvas, mapOptions);
+     map.controls[google.maps.ControlPosition.TOP_LEFT].push(new SearchBox());
+    }
+
+    function SearchBox() {
+        var searchTextBox = $('<input type="text" name="movie" id="txtGeoSearch" onkeyup="javascript:httpGet()"/>');
+        var div = $('<div class="geoSearchBox"></div>')
+                          .append($('<span>Movies:</span>'))
+                                  .append(searchTextBox);
+
+        return div.get(0);
+      }
+
+      function httpGet()
+      {
+          var xmlHttp = null;
+          xmlHttp = new XMLHttpRequest();
+          xmlHttp.open( "GET", "/abc?movie=180", false );
+          xmlHttp.send( null );
+          alert ("Movie Name" + $('input[name=movie]').val() + xmlHttp.responseText);
+          var jsonData = JSON.parse(xmlHttp.responseText);
+          for (var i = 0; i < jsonData.location.length; i++) {
+            var location = new google.maps.LatLng(jsonData.location[i].lat,jsonData.location[i].lng);
+            addMarker(location);
+          }
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
       </script>
+
    </head>
                                                                                                                                                   <body>
-                                                                                                                                                      <div id="map_canvas"></div>
+            <div id="map_canvas"></div>
                                                                                                                                                         </body>
                                                                                                                                                         </html> """
 
@@ -66,7 +111,16 @@ class MyRequestHandler (BaseHTTPRequestHandler) :
             self.send_response(200)
             self.send_header("Content-type:", "text/html")
             self.wfile.write("\n")
-            self.wfile.write(movies_index[query_params["movie"][0]])
+            movie_locations = movies_index[query_params["movie"][0]]
+            cols = len(movies_list[0])
+            locations={'location' : []};
+            for i in movie_locations:
+                location = {}
+                location['lat'] = movies_list[i][cols-2];
+                location['lng'] = movies_list[i][cols-1];
+                locations['location'].append(location)
+            
+            self.wfile.write(json.dumps(locations))
 
 
 def init_log(logfile):
@@ -95,18 +149,7 @@ def create_dict_for_auto_completion():
     logging.info("N- gram index with size =" +str(len(movies_index)) );
     print count
 
-def parse_csv(filename):
-    global movies_list
-    movies_list=[]
-    f = open(filename, 'rt')
-    try:
-        reader = csv.reader(f)
-        for row in reader:
-            movies_list+=[row];
-    finally:
-        f.close()
    
-    logging.info(" CSV File" + filename + " parsed successfully with num of movies  :: " + str(len(movies_list)));
     
 
 def main():
@@ -122,7 +165,10 @@ def main():
         logging.error("input data file not specified");
         sys.exit(1);
 
-    parse_csv(options.csv_filename)
+    global movies_list
+    movies_list = []
+    parse_csv(options.csv_filename,movies_list)
+    logging.info(" CSV File" + options.csv_filename + " parsed successfully with num of movies  :: " + str(len(movies_list)));
     create_dict_for_auto_completion()
     server = HTTPServer(("localhost", 8003), MyRequestHandler)
     server.serve_forever()
