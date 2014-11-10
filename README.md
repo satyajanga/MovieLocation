@@ -50,4 +50,6 @@ The solution focuses mainly backend and a bit of frontend. I chose following tec
 
 I will make the frontend more user friendly and I will also add a help section.
 
+Add HTTPS support. Currently my application does not support Https, It can be done by changing configuration settings in AWS
+
 Processing and keeping all movies data in memory in not scalable approach So I will add a mysql database which helps in scaling the applciation in the presence of huge data.
