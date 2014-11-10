@@ -17,7 +17,7 @@ function deleteMarkers() {
     markers = [];
 }
 
-function initialize(){
+function initialize() {
     var mapCanvas = document.getElementById('map_canvas');
     var mapOptions = {
       center: new google.maps.LatLng(37.7833, -122.4167),
@@ -30,42 +30,37 @@ function initialize(){
 
 $(function() {
     $("#movies").autocomplete({
-        source : function(request, response){
-            var data = getMovies();
-            response(data);
-            },
-        select : function(event,ui){
-            httpGet(ui.item.label);
-            }
+        source : function(request, response) {
+                    var data = getMovies();
+                    response(data);
+                },
+        select : function(event,ui) {
+                    httpGet(ui.item.label);
+                }
      });
 });
 
-function getMovies()
-{
+function getMovies() {
     var xmlHttp = null;
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "/movies?movie="+$("#movies").val(), false );
-    xmlHttp.send( null );
+    xmlHttp.open("GET", "/movies?movie="+$("#movies").val(), false);
+    xmlHttp.send(null);
     var jsonData = JSON.parse(xmlHttp.responseText);
     return jsonData.movies;
 }
 
-function httpGet(movie_name)
-{
+function httpGet(movie_name) {
     deleteMarkers();
     var xmlHttp = null;
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "/get_locations?movie="+movie_name , false );
-    xmlHttp.send( null );
+    xmlHttp.open("GET", "/get_locations?movie="+movie_name , false);
+    xmlHttp.send(null);
     var jsonData = JSON.parse(xmlHttp.responseText);
     var bounds = new google.maps.LatLngBounds ();
     for (var i = 0; i < jsonData.location.length; i++) {
-    var location = new google.maps.LatLng(jsonData.location[i].lat,jsonData.location[i].lng);
-    var infoWindow = new google.maps.InfoWindow({
-              content: jsonData.location[i].content
-                });
-    bounds.extend(location);
-    addMarker(location,jsonData.location[i].content);
+        var location = new google.maps.LatLng(jsonData.location[i].lat,jsonData.location[i].lng);
+        bounds.extend(location);
+        addMarker(location,jsonData.location[i].content);
     }
     map.fitBounds(bounds);
 }
