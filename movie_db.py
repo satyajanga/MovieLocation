@@ -2,13 +2,21 @@ import logging
 from csv_util import parse_csv
 import json
 class MovieDB:
-    def __init__(self,csv_file,log_file):
+    """ 
+    Initializes the class and calls the preprocessing fuction 
+    Args:
+    csv_file :: Name of the CSV File that contains the data
+    """
+    def __init__(self,csv_file):
         self.csv_file = csv_file
-        self.log_file = log_file
         self.movies_data = []
         self.movies_prefix_index ={}
         self.load_and_process_data()
     
+    """
+    Creates indexing on all the prefixes of movie names, 
+    which helps in faster search for autocompletion queries
+    """
     def load_and_process_data(self):
         parse_csv(self.csv_file,self.movies_data);
         logging.info(" CSV File" + self.csv_file + " parsed successfully with num of movies  :: " + str(len(self.movies_data)));
@@ -23,7 +31,12 @@ class MovieDB:
                     self.movies_prefix_index[temp_str].append(i)
                 else:
                     self.movies_prefix_index[temp_str] = [i]
-
+    
+    """
+    Searches the prefix index and return all the matching movie names
+    Args:
+    movie_prefix : input from user during search
+    """
     def search_with_prefix(self,movie_prefix):
         try:
             movie_name_idx = self.movies_prefix_index[movie_prefix]
@@ -36,6 +49,12 @@ class MovieDB:
         movies_names={'movies' : list(set(movies))};
         return json.dumps(movies_names)
 
+    """
+    Returns all the necessary movie information for the selected movie
+    Args:
+    movie_name:: User selected movie name
+
+    """
     def get_locations_by_name(self,movie_name):
         try:
             movie_name_idx = self.movies_prefix_index[movie_name]
@@ -51,4 +70,5 @@ class MovieDB:
             locations['location'].append(location)
                                                                              
         return json.dumps(locations);
+
 

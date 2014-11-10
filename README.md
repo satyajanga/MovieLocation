@@ -1,8 +1,9 @@
 SF In Movies
 =============
 Shows where movies have been filmed in San Fransico 
-Hosted in AWS @ :  
+
 <b> URL </b>
+
 http://movielocationtmp-env.elasticbeanstalk.com/
 
 <b>Problem </b>
@@ -11,7 +12,9 @@ http://movielocationtmp-env.elasticbeanstalk.com/
 2) Showing the locations of the selected movie on Google Maps API
 
 <b> Steps in Solution </b>
+
 These are the steps I sketched down after understanding the coding chanllenge.
+
 1) Download the data from the https://data.sfgov.org/Culture-and-Recreation/Film-Locations-in-San-Francisco/yitu-d5am
 
 2) To mark a location on Google Maps it must be in Longitude, Latitude coordinates. So convert the locations in the data file to Lat Long coordinates using Google MAPS Geocode API and add to the file.
@@ -27,6 +30,7 @@ These are the steps I sketched down after understanding the coding chanllenge.
 <b>Technical Choices</b>
 
 The solution focuses mainly backend and a bit of frontend. I chose following tech stack.
+
 1) Python (Beginner) 
     I used python for some school assignment but Python has always been simple to develop and easy to learn language. So it didn't take much time to gather enough knowledge for this project. 
 
@@ -45,4 +49,5 @@ The solution focuses mainly backend and a bit of frontend. I chose following tec
 <b> If I had more time</b>
 
 I will make the frontend more user friendly and I will also add a help section.
+
 Processing and keeping all movies data in memory in not scalable approach So I will add a mysql database which helps in scaling the applciation in the presence of huge data.
