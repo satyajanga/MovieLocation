@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from process_movie_data import ProcessMovies
+from movie_db import MovieDB
 import logging
 from optparse import OptionParser
 from bottle import route, run, request, static_file,debug
@@ -45,7 +45,7 @@ if len(csv_file) == 0 :
     sys.exit(1);
 
 
-movies_db = ProcessMovies(csv_file,log_file)
+movies_db = MovieDB(csv_file,log_file)
 debug(True) # display traceback 
 application = bottle.default_app()
 

@@ -4,4 +4,6 @@ config = {}
 fp = open("config.ini")
 lines = fp.readlines()
 fp.close()
-config.update(dict([map(lambda x: x.strip(), l.strip().split(':', 1)) for l in lines]))
+for l in lines:
+    line_split = l.strip().split(':')
+    config[line_split[0].strip()] = line_split[1].strip()

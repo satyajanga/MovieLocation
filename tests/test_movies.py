@@ -4,7 +4,7 @@ import unittest
 
 SEARCH_ENDPOINT = "movies"
 LOCATION_ENDPOINT = "get_locations"
-class Test_Movies(unittest.TestCase):
+class TestMovies(unittest.TestCase):
     def test_search_by_empty(self):
         query_params = "movie= "
         response = helpers.get_response(query_params, SEARCH_ENDPOINT)

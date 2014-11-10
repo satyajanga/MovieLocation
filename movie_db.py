@@ -1,7 +1,7 @@
 import logging
 from csv_util import parse_csv
 import json
-class ProcessMovies:
+class MovieDB:
     def __init__(self,csv_file,log_file):
         self.csv_file = csv_file
         self.log_file = log_file
