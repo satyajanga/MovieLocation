@@ -47,7 +47,7 @@ class ProcessMovies:
             location = {}
             location['lat'] = self.movies_data[i][cols-2];
             location['lng'] = self.movies_data[i][cols-1];
-            location['content'] = "Movie Name : " + self.movies_data[i][0]+"\nLocation :: "+ self.movies_data[i][2]   
+            location['content'] = "Movie Name : " + self.movies_data[i][0]+"\nYear :: "+ self.movies_data[i][1] + "\nCast ::" + self.movies_data[i][8]+"," + self.movies_data[i][9] + "," + self.movies_data[i][10] + "\nTrivia :: " + self.movies_data[i][3]   
             locations['location'].append(location)
                                                                              
         return json.dumps(locations);
